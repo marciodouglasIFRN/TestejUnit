@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class TesteVetor {
+class TesteInserir {
 	int tamanho = 5;
 	Vetor testador = new Vetor(tamanho);
 	
 	@Test
 	void inserirElemento_ElementoInserido() {
-		
 		testador.inserir(4);
 		assertEquals(0, testador.buscar((Object)4));
 	}

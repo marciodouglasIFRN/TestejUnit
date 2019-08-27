@@ -18,9 +18,7 @@ public class Vetor {
 	}
 	
 	public void inserir(Object obj,int index) {
-		if(index < 0 || index > conteudo.length-1) {
-			throw new IndexForaDoRangeExeprion();
-		}
+		range(index);
 		if(this.index == index) {
 			conteudo[index] = obj;
 		}else if(this.index < index) {
@@ -30,23 +28,51 @@ public class Vetor {
 		}
 	}
 	
+	private void range(int index) {
+		if(index < 0 || index > conteudo.length-1) {
+			throw new IndexForaDoRangeExeprion();
+		}
+	}
+
 	public int buscar(Object obj) {
 		System.out.println(this);
-		for(int i = 0; i < index; i++) {
+		boolean encontrou = false;
+		int index = -1;
+		for(int i = 0; i < this.index; i++) {
 			if(obj.equals(conteudo[i])) {
-				return i;
+				index = i;
+				encontrou = true;
+				break;
 			}
 		}
-		return -1;
+		if(!encontrou) throw new ElementoNaoEncontradoException();
+		return index;
 	}
 	
 	public Object buscar(int index) {
+		range(index);
 		return conteudo[index];
 	}
 	
 	public boolean estaCheio() {
 		if(conteudo.length == index) return true;
 		return false;
+	}
+	
+	public void remover(Object obj) {
+		for(int i = buscar(obj); i<index-1;i++) {
+			conteudo[i] = conteudo[i+1];
+		}
+		conteudo[--index]=null;
+		
+	}
+	public void remover(int index) {
+		range(index);
+		for(int i = index; i<this.index-1;i++) {
+			conteudo[i] = conteudo[i+1];
+		}
+		conteudo[--this.index]=null;
+		
 	}
 	
 	private void reorganizar(int index,Object obj) {
