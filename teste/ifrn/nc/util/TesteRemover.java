@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class TesteRemover {
 	int tamanho = 5;
-	Vetor testador = new Vetor(tamanho);
+	Vetor testador = new ConcretoVetor(tamanho);
 	@Test
 	void removerElemento_ElementoRemovido() {
 		for(int i = 0; i<tamanho;i++) {
